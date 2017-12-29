@@ -13,6 +13,7 @@ namespace BarcodeGen
     {
         private void ThisAddIn_Startup(object sender, System.EventArgs e)
         {
+            Globals.ThisAddIn.CustomTaskPanes.Add(new SettingsPane(), "オプション");
         }
 
         private void ThisAddIn_Shutdown(object sender, System.EventArgs e)
