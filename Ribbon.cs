@@ -75,11 +75,7 @@ namespace BarcodeGen
 
         private void group1_DialogLauncherClick(object sender, RibbonControlEventArgs e)
         {
-            var pane = Globals.ThisAddIn.CustomTaskPanes
-                .Where(x => x.Control is SettingsPane)
-                .First();
-            Debug.Assert(pane != null);
-            pane.Visible = true;             
+            Globals.ThisAddIn.ShowSettingsPane();
         }
 
         class PictureOnSheet
