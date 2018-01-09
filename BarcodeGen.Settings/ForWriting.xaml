@@ -3,11 +3,18 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:vm="clr-namespace:BarcodeGen.Settings"
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="300">
+
+    <UserControl.DataContext>
+        <vm:ForWritingViewModel />
+    </UserControl.DataContext>
+
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
@@ -39,12 +46,18 @@
                HorizontalAlignment="Left" VerticalAlignment="Center"
                Content="ピクセル" />
 
-        <TextBox Grid.Row="0" Grid.Column="1" TextAlignment="Right" Text="40" />
-        <TextBox Grid.Row="1" Grid.Column="1" TextAlignment="Right" Text="200" />
-        <TextBox Grid.Row="2" Grid.Column="1" TextAlignment="Right" Text="30" />
+        <TextBox Grid.Row="0" Grid.Column="1" TextAlignment="Right" Text="{Binding Height.Value, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}" />
+        <TextBox Grid.Row="1" Grid.Column="1" TextAlignment="Right" Text="{Binding Width.Value, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}" />
+        <TextBox Grid.Row="2" Grid.Column="1" TextAlignment="Right" Text="{Binding Margin.Value, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}" />
 
         <CheckBox Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="2"
                   HorizontalAlignment="Left" VerticalAlignment="Center"
                   Content="バーコードのみ表示する" />
+        
+        <Button Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="3"
+                HorizontalAlignment="Left"
+                Width="70"
+                Content="適用" Command="{Binding ApplyCommand}" />
+
     </Grid>
 </UserControl>

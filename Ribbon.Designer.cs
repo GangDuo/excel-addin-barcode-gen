@@ -40,6 +40,7 @@
             this.button1 = this.Factory.CreateRibbonButton();
             this.tab1.SuspendLayout();
             this.group1.SuspendLayout();
+            this.SuspendLayout();
             // 
             // tab1
             // 
@@ -77,6 +78,7 @@
             this.tab1.PerformLayout();
             this.group1.ResumeLayout(false);
             this.group1.PerformLayout();
+            this.ResumeLayout(false);
 
         }
 

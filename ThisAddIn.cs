@@ -21,13 +21,21 @@ namespace BarcodeGen
         {
         }
 
+        public Microsoft.Office.Tools.CustomTaskPane SettingsTaskPane
+        {
+            get
+            {
+                var pane = CustomTaskPanes
+                    .Where(x => x.Control is SettingsPane)
+                    .First();
+                Debug.Assert(pane != null);
+                return pane;
+            }
+        }
+
         public void ShowSettingsPane()
         {
-            var pane = CustomTaskPanes
-                .Where(x => x.Control is SettingsPane)
-                .First();
-            Debug.Assert(pane != null);
-            pane.Visible = true;
+            SettingsTaskPane.Visible = true;
         }
 
         #region VSTO で生成されたコード
