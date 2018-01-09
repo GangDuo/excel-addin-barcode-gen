@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 using System.Windows.Forms.Integration;
+using System.Diagnostics;
 
 namespace BarcodeGen
 {
@@ -22,9 +23,11 @@ namespace BarcodeGen
         private void SettingsPane_Load(object sender, EventArgs e)
         {
             var ehost = new ElementHost { Dock = DockStyle.Fill };
-             ControlForSettings = new Settings.ForWriting();
-             ehost.Child = ControlForSettings; 
-             Controls.Add(ehost);
+            ControlForSettings = new Settings.ForWriting();
+            ehost.Child = ControlForSettings; 
+            Controls.Add(ehost);
+            var vm = ControlForSettings.DataContext as Settings.ForWritingViewModel;
+            vm.ApplyCommand.Subscribe(_ => Debug.WriteLine(""));
         }
     }
 }
