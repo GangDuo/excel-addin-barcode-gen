@@ -26,8 +26,6 @@ namespace BarcodeGen
             ControlForSettings = new Settings.ForWriting();
             ehost.Child = ControlForSettings; 
             Controls.Add(ehost);
-            var vm = ControlForSettings.DataContext as Settings.ForWritingViewModel;
-            vm.ApplyCommand.Subscribe(_ => Debug.WriteLine(""));
         }
     }
 }

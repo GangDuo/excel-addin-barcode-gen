@@ -38,11 +38,11 @@ namespace BarcodeGen
             bacodeWriter.Format = BarcodeFormat.EAN_13;
 
             // サイズ
-            bacodeWriter.Options.Height = 40;
-            bacodeWriter.Options.Width = 200;
+            bacodeWriter.Options.Height = Settings.Config.Instance.Height;//pixels
+            bacodeWriter.Options.Width = Settings.Config.Instance.Width;
 
             // バーコード左右の余白
-            bacodeWriter.Options.Margin = 30;
+            bacodeWriter.Options.Margin = Settings.Config.Instance.Margin;
 
             // バーコードのみ表示するか
             // falseにするとテキストも表示する
@@ -57,6 +57,7 @@ namespace BarcodeGen
             foreach (Microsoft.Office.Interop.Excel.Range cell in rngTarget)
             {
                 string janCode = cell.Text.ToString().Trim();
+                if (janCode.Length == 0) continue;
                 // バーコードBitmapを作成
                 using (var bitmap = bacodeWriter.Write(janCode))
                 {

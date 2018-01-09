@@ -10,7 +10,7 @@ using System.Text;
 
 namespace BarcodeGen.Settings
 {
-    public class ForWritingViewModel
+    class ForWritingViewModel
     {
         [Required(ErrorMessage = "数字を入力してください")]
         public ReactiveProperty<string> Height { get; private set; }
@@ -32,13 +32,13 @@ namespace BarcodeGen.Settings
                 return (string.IsNullOrWhiteSpace(x) || !int.TryParse(x, out n)) ? "Error!!" : null;
             };
 
-            Height = new ReactiveProperty<string>("40")
+            Height = new ReactiveProperty<string>(Config.Instance.Height.ToString())
                 .SetValidateNotifyError(validator);
 
-            Width = new ReactiveProperty<string>("200")
+            Width = new ReactiveProperty<string>(Config.Instance.Width.ToString())
                 .SetValidateNotifyError(validator);
 
-            Margin = new ReactiveProperty<string>("30")
+            Margin = new ReactiveProperty<string>(Config.Instance.Margin.ToString())
                 .SetValidateNotifyError(validator);
 
             this.ApplyCommand = new[]
@@ -51,9 +51,13 @@ namespace BarcodeGen.Settings
             .CombineLatestValuesAreAllFalse()
             .ToReactiveCommand();
 
-            // Executeが呼ばれたらインクリメント
             this.ApplyCommand
-                .Subscribe(_ => Debug.WriteLine(""));
+                .Subscribe(_ =>
+                {
+                    Config.Instance.Height = int.Parse(Height.Value);
+                    Config.Instance.Width = int.Parse(Width.Value);
+                    Config.Instance.Margin = int.Parse(Margin.Value);
+                });
 
         }
     }
