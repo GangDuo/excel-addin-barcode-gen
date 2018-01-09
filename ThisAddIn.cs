@@ -6,6 +6,7 @@ using System.Xml.Linq;
 using Excel = Microsoft.Office.Interop.Excel;
 using Office = Microsoft.Office.Core;
 using Microsoft.Office.Tools.Excel;
+using System.Diagnostics;
 
 namespace BarcodeGen
 {
@@ -13,10 +14,28 @@ namespace BarcodeGen
     {
         private void ThisAddIn_Startup(object sender, System.EventArgs e)
         {
+            Globals.ThisAddIn.CustomTaskPanes.Add(new SettingsPane(), "オプション");
         }
 
         private void ThisAddIn_Shutdown(object sender, System.EventArgs e)
         {
+        }
+
+        public Microsoft.Office.Tools.CustomTaskPane SettingsTaskPane
+        {
+            get
+            {
+                var pane = CustomTaskPanes
+                    .Where(x => x.Control is SettingsPane)
+                    .First();
+                Debug.Assert(pane != null);
+                return pane;
+            }
+        }
+
+        public void ShowSettingsPane()
+        {
+            SettingsTaskPane.Visible = true;
         }
 
         #region VSTO で生成されたコード

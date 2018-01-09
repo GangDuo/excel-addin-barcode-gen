@@ -3,3 +3,5 @@
 /BarcodeGen_TemporaryKey.pfx
 /packages
 /.vs
+/BarcodeGen.Settings/obj
+/BarcodeGen.Settings/bin
