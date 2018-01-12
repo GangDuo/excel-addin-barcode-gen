@@ -235,13 +235,13 @@
     <AppDesigner Include="Properties\" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Excel.Helpers\Excel.Helpers.csproj">
-      <Project>{98d79adb-d4d7-4607-90f6-67fa93b2c5e6}</Project>
-      <Name>Excel.Helpers</Name>
-    </ProjectReference>
     <ProjectReference Include="BarcodeGen.Settings\BarcodeGen.Settings.csproj">
       <Project>{c9bde1a2-c5ee-4ea9-b2a6-c7d52c374303}</Project>
       <Name>BarcodeGen.Settings</Name>
+    </ProjectReference>
+    <ProjectReference Include="lib\excel-helpers\Excel.Helpers.csproj">
+      <Project>{98d79adb-d4d7-4607-90f6-67fa93b2c5e6}</Project>
+      <Name>Excel.Helpers</Name>
     </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
