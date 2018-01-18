@@ -5,3 +5,5 @@
 /.vs
 /BarcodeGen.Settings/obj
 /BarcodeGen.Settings/bin
+/Setup/Debug
+/Setup/Release
